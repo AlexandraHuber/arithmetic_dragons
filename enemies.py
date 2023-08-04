@@ -6,7 +6,7 @@ from random import randint, choice
 class Enemy(Attacker):
     pass
 
-
+#FIXME ?
 def generate_random_enemy():
     RandomEnemyType = choice(enemy_types)
     enemy = RandomEnemyType()
@@ -26,7 +26,7 @@ class Dragon(Enemy):
         return answer == self.__answer
 
 
-class GreenDragon(Dragon):
+class GreenDragon(Dragon): #addition
     def __init__(self):
         self._health = 200
         self._attack = 10
@@ -40,7 +40,32 @@ class GreenDragon(Dragon):
         return self.__quest
 
 #FIXME здесь также должны быть описаны классы RedDragon и BlackDragon
-# красный дракон учит вычитанию, а чёрный -- умножению.
+# красный дракон учит вычитанию, а чёрный -- умножению - ok
 
+class RedDragon(Dragon): #substraction
+    def __init__(self):
+        self._health = 250
+        self._attack = 10
+        self._color = 'красный'
+
+    def question(self):
+        x = randint(1,100)
+        y = randint(1,100)
+        self.__quest = str(x) + '-' + str(y)
+        self.set_answer(x - y)
+        return self.__quest
+
+class BlackDragon(Dragon): #multiplication
+    def __init__(self):
+        self._health = 150
+        self._attack = 10
+        self._color = 'чёрный'
+
+    def question(self):
+        x = randint(1,10)
+        y = randint(1,10)
+        self.__quest = str(x) + '*' + str(y)
+        self.set_answer(x * y)
+        return self.__quest
 
 enemy_types = [GreenDragon, RedDragon, BlackDragon]
